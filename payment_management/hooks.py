@@ -1,8 +1,8 @@
 app_name = "payment_management"
 app_title = "Payment Management"
-app_publisher = "finbyz"
+app_publisher = "FInbyz"
 app_description = "Payment Management"
-app_email = "finbyz"
+app_email = "info@finbyz.com"
 app_license = "MIT"
 
 # Includes in <head>
