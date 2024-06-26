@@ -1,6 +1,6 @@
 ## Payment Management
 
-finbyz
+Payment Management
 
 #### License
 

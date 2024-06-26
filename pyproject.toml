@@ -3,7 +3,7 @@ name = "payment_management"
 authors = [
     { name = "finbyz", email = "finbyz"}
 ]
-description = "finbyz"
+description = "Payment Management"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
