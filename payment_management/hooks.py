@@ -1,7 +1,7 @@
 app_name = "payment_management"
 app_title = "Payment Management"
 app_publisher = "finbyz"
-app_description = "Payment Management"
+app_description = "finbyz"
 app_email = "finbyz"
 app_license = "MIT"
 
