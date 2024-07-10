@@ -102,6 +102,7 @@ def create_payment_entry(selected_rows):
                 "paid_amount": total_paid,
                 "paid_to": row["party_account"],
                 "received_amount": total_paid,
+                "cost_center": row["cost_center"],
                 "source_exchange_rate": exchange_rate or 1,
                 "references": references,
             }
