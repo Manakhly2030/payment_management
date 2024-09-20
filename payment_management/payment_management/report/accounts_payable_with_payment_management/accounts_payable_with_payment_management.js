@@ -269,6 +269,7 @@ frappe.query_reports["Accounts Payable with Payment Management"] = {
 				);
 
 			},
+			default: 1,
 
 		},
 		{
@@ -510,14 +511,16 @@ $(function () {
 		frappe.call({
 			method: 'payment_management.api.create_payment_request',
 			args: {
-				"selected_rows": selected_rows
+				"selected_rows": selected_rows,
+				"company": frappe.query_report.get_filter_value("company"),
 			},
 			callback: function (r) {
-				if (r.message === 'ok') {
-					frappe.msgprint(__("Payment Request created successfully."));
+				if (r.message.success) {
+					frappe.msgprint(r.message.success.join('<br>'));
+					frappe.msgprint(r.message.error.join('<br>'));
 				}
 				else{
-					frappe.msgprint(r.message.join('<br>'));
+					frappe.msgprint(r.message.error.join('<br>'));
 				}
 			}
 		});
@@ -532,11 +535,16 @@ $(function () {
 		frappe.call({
 			method: 'payment_management.api.create_payment_entry',
 			args: {
-				"selected_rows": selected_rows
+				"selected_rows": selected_rows,
+				"company": frappe.query_report.get_filter_value("company"),
 			},
 			callback: function (r) {
-				if (r.message) {
-					frappe.msgprint(__("Payment Entry created successfully."));
+				if (r.message.success) {
+					frappe.msgprint(r.message.success.join('<br>'));
+					frappe.msgprint(r.message.error.join('<br>'));
+				}
+				else{
+					frappe.msgprint(r.message.error.join('<br>'));
 				}
 			}
 		});
