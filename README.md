@@ -25,15 +25,13 @@ All filters in this report function as standard filters in the ERPNext Accounts 
 
 1.  Group By Supplier: When this filter is applied, the data is displayed as grouped by supplier.
     
-    ![A screenshot of a computer
-    Description automatically generated](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcbphW5iVOTsGn6uWzELtcWQIbKX4sKNUnGf1L6RqeuEyaJSkez8ddBVk_jHBbHWWfD9hjovCv3eo9jjXIKYv5_akwtjBCe-VeyIMqrp5lmJYc2YoKFCdDX1wFoyv9CEHvIcTQF2Xkmabu24iqvOzNgW8xx1HRWJNyKr8U4KA?key=o2pLARlkV8oC0DpOaWuWPA)
+    ![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcbphW5iVOTsGn6uWzELtcWQIbKX4sKNUnGf1L6RqeuEyaJSkez8ddBVk_jHBbHWWfD9hjovCv3eo9jjXIKYv5_akwtjBCe-VeyIMqrp5lmJYc2YoKFCdDX1wFoyv9CEHvIcTQF2Xkmabu24iqvOzNgW8xx1HRWJNyKr8U4KA?key=o2pLARlkV8oC0DpOaWuWPA)
 
 **Creating Payment Entries:**
 
 1.  **Selecting Rows:** Select the rows corresponding to the invoices you want to pay. The system adds the amount of each selected invoice to the number card, showing the total amount to be paid
     
-    ![A screenshot of a computer
-    Description automatically generated](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcbphW5iVOTsGn6uWzELtcWQIbKX4sKNUnGf1L6RqeuEyaJSkez8ddBVk_jHBbHWWfD9hjovCv3eo9jjXIKYv5_akwtjBCe-VeyIMqrp5lmJYc2YoKFCdDX1wFoyv9CEHvIcTQF2Xkmabu24iqvOzNgW8xx1HRWJNyKr8U4KA?key=o2pLARlkV8oC0DpOaWuWPA)
+    ![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcbphW5iVOTsGn6uWzELtcWQIbKX4sKNUnGf1L6RqeuEyaJSkez8ddBVk_jHBbHWWfD9hjovCv3eo9jjXIKYv5_akwtjBCe-VeyIMqrp5lmJYc2YoKFCdDX1wFoyv9CEHvIcTQF2Xkmabu24iqvOzNgW8xx1HRWJNyKr8U4KA?key=o2pLARlkV8oC0DpOaWuWPA)
 2.  **Number Card:** Displays the total amount of the selected invoices. Additionally, “Actions” Button will be visible at the upper right corner of the report.
     
     ![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcYmMXCpfz7X4HiZCPhFLMRGMlyxzvLwHOkS3F6e_G20eckVH0NrsNk8WcZbZnWu-3P13IiQcxyFm8_fQvtFh9RlxAQtKyVbIs4mDmcNR1P971GQTFtzLpXJcxh98JA5S83IML-cTaBc3psIUIkvAvTtEBI_xxY0OZEeL9f1g?key=o2pLARlkV8oC0DpOaWuWPA)
