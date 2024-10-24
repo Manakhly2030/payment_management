@@ -7,6 +7,7 @@ from erpnext.accounts.doctype.payment_request.payment_request import (
 )
 from frappe.utils.data import flt
 from frappe.utils import nowdate
+import traceback
 
 
 
@@ -27,6 +28,11 @@ def create_payment_request(selected_rows,company):
                 or row.get("voucher_type") == "Journal Entry"
             ):
                 continue
+
+
+            existing_payment_request_amount = get_existing_payment_request_amount(
+                row.get("voucher_type"), row.get("voucher_no")
+            )
             
             ref_doc = frappe.get_doc(row.get("voucher_type"), row.get("voucher_no"))
             
@@ -75,18 +81,19 @@ def create_payment_entry(selected_rows,company):
         party_currency = "USD"
 
         for row in rows:
-            total_paid += row["invoiced"]
+            total_paid += row["outstanding"]
 
             account_currency = row["account_currency"]
             party_currency = row["currency"]
 
             references.append(
                 {
-                    "reference_doctype": row.get("voucher_type"),
-                    "reference_name": row["voucher_no"],
                     "total_amount": row["total_due"],
                     "outstanding_amount": row["outstanding"],
-                    "allocated_amount": row["invoiced"],
+                    "reference_doctype": row.get("voucher_type"),
+                    "allocated_amount": row["outstanding"],
+                    "reference_name": row["voucher_no"],
+                    "reference_doctype": row["voucher_type"],
                 }
             )
 
@@ -94,22 +101,22 @@ def create_payment_entry(selected_rows,company):
 
         payment_entry = frappe.get_doc(
             {
-                "doctype": "Payment Entry",
                 "payment_type": "Pay",
-                "party_type": row["party_type"],
-                "party": party,
-                "posting_date": row["posting_date"],
-                "paid_amount": total_paid,
-                "paid_to": row["party_account"],
-                "received_amount": total_paid,
-                "cost_center": row["cost_center"],
-                "source_exchange_rate": exchange_rate or 1,
-                "references": references,
                 "posting_date":nowdate(),
+                "company": company.name,
                 "mode_of_payment": "E payment",
-                "paid_from":company.default_bank_account,
                 "reference_no": "RTGS",
                 "reference_date":nowdate(),
+                "party_type": row["party_type"],
+                "party": party,
+                "paid_from":company.default_bank_account,
+                "paid_amount": total_paid,
+                "received_amount": total_paid,
+                "source_exchange_rate": exchange_rate or 1,
+                "doctype": "Payment Entry",
+                "paid_to": row["party_account"],
+                "references": references,
+                "cost_center": row.get("cost_center"),
             }
         )
 
@@ -124,5 +131,6 @@ def create_payment_entry(selected_rows,company):
             )
         except Exception as e:
             response["error"].append(str(e))
+            frappe.log_error("Payment entry error payment management",traceback.format_exc())
 
     return response
