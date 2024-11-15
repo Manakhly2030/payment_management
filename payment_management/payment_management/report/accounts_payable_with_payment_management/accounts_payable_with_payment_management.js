@@ -422,9 +422,9 @@ function disable_checkbox_column() {
 		if (this.checked) {
 			frappe.query_report.data.forEach((row, index) => {
 				let node = `.dt-row.dt-row-${index}.vrow`;
-				if (row.voucher_no != undefined && row.invoice_grand_total) {
+				if (row.voucher_no != undefined && row.outstanding) {
 					$(node).find("[type='checkbox']").prop("checked", true);
-					total_amount += row.invoice_grand_total;
+					total_amount += row.outstanding;
 				}
 				else {
 					$(node).find("[type='checkbox']").prop("checked", false);
@@ -480,13 +480,13 @@ function listner_to_checkbox() {
 
 			checkbox.off('change').on('change', (function () {
 				if (this.checked) {
-					total_amount += row.invoice_grand_total;
+					total_amount += row.outstanding;
 					if (total_amount < 0) {
 						total_amount = 0
 					}
 					set_card_total_amount(total_amount);
 				} else {
-					total_amount -= row.invoice_grand_total;
+					total_amount -= row.outstanding;
 					if (total_amount < 0) {
 						total_amount = 0
 					}
@@ -502,29 +502,29 @@ function listner_to_checkbox() {
 
 
 $(function () {
-	frappe.query_report.page.add_action_item('Create Payment Request', function () {
-		const selected_rows = frappe.query_report.get_checked_items();
-		if (selected_rows.length === 0) {
-			frappe.msgprint(__("Please select at least one row to create payment request."));
-			return;
-		}
-		frappe.call({
-			method: 'payment_management.api.create_payment_request',
-			args: {
-				"selected_rows": selected_rows,
-				"company": frappe.query_report.get_filter_value("company"),
-			},
-			callback: function (r) {
-				if (r.message.success) {
-					frappe.msgprint(r.message.success.join('<br>'));
-					frappe.msgprint(r.message.error.join('<br>'));
-				}
-				else{
-					frappe.msgprint(r.message.error.join('<br>'));
-				}
-			}
-		});
-	}, __("Action"));
+	// frappe.query_report.page.add_action_item('Create Payment Request', function () {
+	// 	const selected_rows = frappe.query_report.get_checked_items();
+	// 	if (selected_rows.length === 0) {
+	// 		frappe.msgprint(__("Please select at least one row to create payment request."));
+	// 		return;
+	// 	}
+	// 	frappe.call({
+	// 		method: 'payment_management.api.create_payment_request',
+	// 		args: {
+	// 			"selected_rows": selected_rows,
+	// 			"company": frappe.query_report.get_filter_value("company"),
+	// 		},
+	// 		callback: function (r) {
+	// 			if (r.message.success) {
+	// 				frappe.msgprint(r.message.success.join('<br>'));
+	// 				frappe.msgprint(r.message.error.join('<br>'));
+	// 			}
+	// 			else{
+	// 				frappe.msgprint(r.message.error.join('<br>'));
+	// 			}
+	// 		}
+	// 	});
+	// }, __("Action"));
 	frappe.query_report.page.add_action_item('Create Payment Entry', function () {
 		const selected_rows = frappe.query_report.get_checked_items();
 		console.log('selected_rows', selected_rows);
